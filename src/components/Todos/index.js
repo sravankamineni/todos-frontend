@@ -2,12 +2,14 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-import { FaEdit, FaTrash } from 'react-icons/fa';
+import { FaEdit, FaTrash, FaSave } from 'react-icons/fa';
 import "./index.css"
 
 const Todos = () => {
     const [todos, setTodos] = useState([]);
     const [title, setTitle] = useState('');
+    const [editingId, setEditingId] = useState(null);
+    const [editingTitle, setEditingTitle] = useState('');
     const token = localStorage.getItem('token');
     const navigate = useNavigate()
 
@@ -18,22 +20,19 @@ const Todos = () => {
         }
 
         const fetchTodos = async () => {
-                try {
-                    const response = await axios.get('https://todos-backend-sravan.onrender.com/api/todos', {
-                        headers: { Authorization: `Bearer ${token}` }
-                    });
-                    console.log(response)
-                    setTodos(response.data.todos);
-                } catch (error) {
-                    console.log(error);
-                }
-            
-        
-        
-          
+            try {
+                const response = await axios.get('https://todos-backend-sravan.onrender.com/api/todos', {
+                    headers: { Authorization: `Bearer ${token}` }
+                });
+                // console.log(response)
+                setTodos(response.data.todos);
+            } catch (error) {
+                console.log(error);
+            }
+
         };
         fetchTodos();
-    }, [token,navigate]);
+    }, [token, navigate]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -64,15 +63,16 @@ const Todos = () => {
             ));
         } catch (error) {
             console.log(error);
-           
+            alert(error.response.data.message)
+
         }
     };
 
 
- 
-    const handleLogout =  () => {
-    localStorage.removeItem("token")
-     navigate("/login")
+
+    const handleLogout = () => {
+        localStorage.removeItem("token")
+        navigate("/login")
     };
 
     const handleDelete = async (id) => {
@@ -82,7 +82,34 @@ const Todos = () => {
             });
             setTodos(todos.filter(todo => todo._id !== id));
         } catch (error) {
-            console.error(error);
+            console.log(error);
+            alert(error.response.data.message)
+        }
+    };
+
+
+    const handleEdit = (id, title) => {
+        setEditingId(id);
+        setEditingTitle(title);
+    };
+
+
+
+    const handleSave = async (id) => {
+        try {
+            const response = await axios.put(`https://todos-backend-sravan.onrender.com/api/todos/${id}`,
+                { title: editingTitle }, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            console.log(response.data);
+            setTodos(todos.map(todo =>
+                todo._id === id ? { ...todo, title: response.data.updateTodo.title } : todo
+            ));
+            setEditingId(null);
+            setEditingTitle('');
+        } catch (error) {
+            console.log(error);
+            alert(error.response.data.message)
         }
     };
 
@@ -97,7 +124,7 @@ const Todos = () => {
                                 Create <span className="create-task-heading-subpart">Task</span>
                             </h1>
 
-                            <button onClick={()=>handleLogout()} className='btn btn-danger'>
+                            <button onClick={() => handleLogout()} className='btn btn-danger'>
                                 Logout
                             </button>
 
@@ -133,23 +160,43 @@ const Todos = () => {
                                         checked={todo.completed}
                                         onChange={() => handleUpdateTodo(todo._id, todo.completed)}
                                     />
+                                    
                                     <div className="label-container d-flex flex-row">
-                                        <label
-                                            className={`checkbox-label ${todo.completed ? "completed" : ""}`}
-                                        >
-                                            {todo.title}
-                                        </label>
-                                        <div className="delete-icon-container">
-                                            {/* <i
-                                                className="far fa-trash-alt delete-icon"
-                                            ></i> */}
-                                            {/* <button onClick={() => handleDelete(todo._id)} className="btn delete-icon">
-                                                <FaEdit />
-                                            </button> */}
-                                            <button onClick={() => handleDelete(todo._id)} className="btn delete-icon">
-                                                <FaTrash />
-                                            </button>
-                                        </div>
+                                        
+                                        
+                                        {editingId === todo._id ? (
+                                            <>
+                                                <input
+                                                    type="text"
+                                                    className="edit-todo-input"
+                                                    value={editingTitle}
+                                                    onChange={(e) => setEditingTitle(e.target.value)}
+                                                />
+                                                <button onClick={() => handleSave(todo._id)} className="btn delete-icon">
+                                                    <FaSave />
+                                                </button>
+                                            </>
+                                        ) :(
+                                                <>
+                                                    <label
+                                                        className={`checkbox-label ${todo.completed ? "completed" : ""}`}
+                                                    >
+                                                        {todo.title}
+                                                    </label>
+                                                    <div className="delete-icon-container">
+                                                        <button onClick={() => handleEdit(todo._id, todo.title)} className="btn delete-icon">
+                                                            <FaEdit />
+                                                        </button>
+                                                       
+                                                    </div>
+                                
+                                                </>
+                                        )}
+                                     
+                                        <button onClick={() => handleDelete(todo._id)} className="btn delete-icon">
+                                            <FaTrash />
+                                        </button>
+                                      
                                     </div>
 
 

@@ -22,6 +22,7 @@ const Register = () => {
         } catch (error) {
             console.log(error);
             setError(error.response.data.message)
+            
         }
     };
 
@@ -66,7 +67,7 @@ const Register = () => {
                 </div>
                 
             </form>
-            <p className='mt-5'>Note: Pls wait for some time, <span className='text-warning font-weight-bold'>Backend is slow</span></p>
+            <p className='mt-5'>Note: Pls wait for some time after clicking login, <span className='text-warning font-weight-bold'>Backend is slow</span></p>
         </div>
     );
 }

@@ -124,3 +124,18 @@
     text-decoration: line-through;
     color: #888;
 }
+
+.edit-todo-input {
+    width: 70%;
+    padding: 5px;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.delete-icon-container {
+    display: flex;
+    /* gap: 5px; */
+    align-items: center;
+    justify-content: flex-end;
+}

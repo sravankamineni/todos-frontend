@@ -58,7 +58,7 @@ const Login = () => {
                 </div>
                     
             </form>
-            <p className='mt-5'>Note: Pls wait for some time, <span className='text-warning font-weight-bold'>Backend is slow/ Try again</span></p>
+            <p className='mt-5'>Note: Pls wait for some time after clicking login, <span className='text-warning font-weight-bold'>Backend is slow/ Try again</span></p>
         </div>
     );
 }
