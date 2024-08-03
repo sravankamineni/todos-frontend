@@ -1,0 +1,27 @@
+.login-cont {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.login-cont h2 {
+    text-align: center;
+}
+.register-route{
+    font-size: 18px;
+    /* margin-bottom: 18px; */
+}
+.link-text{
+    text-decoration: none;
+    color: rgb(255, 0, 0);
+
+}
+
+.error-msg{
+    color: red;
+    font-size: 16px;
+}
