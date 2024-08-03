@@ -143,9 +143,9 @@ const Todos = () => {
                                             {/* <i
                                                 className="far fa-trash-alt delete-icon"
                                             ></i> */}
-                                            <button onClick={() => handleDelete(todo._id)} className="btn delete-icon">
+                                            {/* <button onClick={() => handleDelete(todo._id)} className="btn delete-icon">
                                                 <FaEdit />
-                                            </button>
+                                            </button> */}
                                             <button onClick={() => handleDelete(todo._id)} className="btn delete-icon">
                                                 <FaTrash />
                                             </button>
