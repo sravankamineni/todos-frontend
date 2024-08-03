@@ -32,7 +32,7 @@ const Login = () => {
             <h2 className="mb-4">
                  Login
             </h2>
-            <p className='register-route'>Don't have an account <Link className='link-text' to="/register">Create One</Link></p>
+            <p className='register-route mb-5'>Don't have an account? <Link className='text-decoration-none' to="/register">Create One</Link></p>
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <input

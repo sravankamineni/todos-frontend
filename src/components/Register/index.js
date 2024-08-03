@@ -28,7 +28,7 @@ const Register = () => {
     return (
         <div className="register-cont">
             <h2 className="mb-4"> Register</h2>
-            <p className='register-route'>Already have an account  <Link className='link-text text-success' to="/login"> Login here</Link></p>
+            <p className='register-route mb-5'>Already have an account?  <Link className='text-decoration-none' to="/login"> Login here...</Link></p>
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <input
