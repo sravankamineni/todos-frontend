@@ -27,47 +27,50 @@ const Register = () => {
     };
 
     return (
-        <div className="register-cont">
-            <h2 className="mb-4"> Register</h2>
-            <p className='register-route mb-5'>Already have an account?  <Link className='text-decoration-none' to="/login"> Login here...</Link></p>
-            <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                    <input
-                        type="test"
-                        className="form-control"
-                        placeholder="Username*"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                 
-                    />
-                </div>
-                <div className="mb-3">
-                    <input
-                        type="email"
-                        className="form-control"
-                        placeholder="Email*"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                   
-                    />
-                </div>
-                <div className="mb-3">
-                    <input
-                        type="password"
-                        className="form-control"
-                        placeholder="Password*"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-            
-                    />
-                </div >
-                {error && <p className='error-msg'>{error}*</p>}
-                <div className='text-center mt-4'>
-                    <button type="submit" className="btn btn-primary">Register</button>
-                </div>
-                
-            </form>
-            <p className='mt-5'>Note: Pls wait for some time after clicking login, <span className='text-warning font-weight-bold'>Backend is slow</span></p>
+        <div className="container d-flex justify-content-center align-items-center min-vh-100">
+            <div className="register-cont">
+                <h2 className="mb-4 text-center">Register</h2>
+                <p className="text-center mb-5">
+                    Already have an account? <Link className="text-decoration-none" to="/login">Login here...</Link>
+                </p>
+                <form onSubmit={handleSubmit}>
+                    <div className="mb-3">
+                        <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Username*"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <input
+                            type="email"
+                            className="form-control"
+                            placeholder="Email*"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <input
+                            type="password"
+                            className="form-control"
+                            placeholder="Password*"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </div>
+                    {error && <p className="error-msg">{error}*</p>}
+                    <div className="text-center mt-4">
+                        <button type="submit" className="btn btn-primary">Register</button>
+                    </div>
+                </form>
+                <p className="mt-5">
+                    Note: Please wait for some time after clicking register,
+                    <span className="text-danger font-weight-bold"> Backend is slow</span>
+                </p>
+            </div>
         </div>
     );
 }

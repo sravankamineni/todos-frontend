@@ -11,6 +11,8 @@ A simple to-do list application that allows users to register, login, and manage
 - Secure password storage with bcrypt
 - JSON Web Token (JWT) for authentication
 
+
+
 ## API Endpoints
 
 ### User Authentication
@@ -47,11 +49,6 @@ Registers a new user.
   {
     "token": "jwt_token"
   }
-
-
-
-
-
 
 
 
@@ -123,14 +120,7 @@ Registers a new user.
 
 
 
-
-
-
-
-
-
 #### DELETE api/todos/id
-
 
 - **Response:**
 
@@ -139,3 +129,33 @@ Registers a new user.
 }
 
 
+
+
+
+
+# Deployment
+## Backend (Render)
+
+- Push the backend code to a GitHub repository.
+
+- Create a new web service on Render and connect it to your GitHub repository.
+
+- Configure environment variables (PORT, CONNECTION_STRING,  JWT_SECRET, etc.) in Render.
+
+## Frontend (Vercel)
+- Push the frontend code to a GitHub repository.
+- Create a new project on Vercel and connect it to your GitHub repository.
+
+# Links to Deployed Applications
+## Note - only authorized can see the data
+
+### Backend (Render): 
+  * POST https://todos-backend-sravan.onrender.com/api/users/register: Register a new user.
+  * POST https://todos-backend-sravan.onrender.com/api/login: Log in an existing user 
+  * POST https://todos-backend-sravan.onrender.com/api/todos: Create a new to-do item.
+  * GET https://todos-backend-sravan.onrender.com/api/todos: Retrieve all to-do items for the logged-in user.
+  * PUT https://todos-backend-sravan.onrender.com/api/todos/:id: Update a to-do item by ID.
+  * DELETE https://todos-backend-sravan.onrender.com/api/todos/:id: Delete a to-do item by ID.
+
+### Frontend (Vercel): 
+- (https://todos-sravan.vercel.app/)
